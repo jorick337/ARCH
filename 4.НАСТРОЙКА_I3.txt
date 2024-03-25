@@ -1,0 +1,69 @@
+1. ЗАПУСК I3 ПО УМОЛЧАНИЮ:
+	1) "sudo nano ~/.bash_profile" ДОБАВИМ В ФАЙЛ СЛЕДУЮЩЕЕ:
+	"
+	if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+	  exec startx
+	fi
+	";
+	2) ОСОБОЕ ВНИМАНИЕ НА ПРОБЕЛЫ, ОНИ ВАЖНЫ;
+	3) "sudo reboot" ПРОВЕРИМ ПРИМЕНИЛОСЬ ЛИ.
+
+2. УСТАНОВКА НУЖНОГО ПО:
+	1) "sudo pacman -S ttf-font-awesome" - ДОБАВИТ ВОЗМОЖНОСТЬ ВИДЕТЬ ИКОНКИ С САЙТА https://fontawesome.com/cheatsheet?from=io;
+	2) "sudo pacman -S pacman-contrib" - ДЛЯ КОНФИГА ПОКАЗА КОЛИЧЕСТВА ВОЗМОЖНЫХ ОБНОВЛЕНИЙ И ТОГО СКОЛЬКО ОБНОВИЛОСЬ;
+	3) "sudo pacman -S jq" - ЧИТАЕТ МНОГОМЕРНЫЕ МАССИВЫ JSON, НУЖЕН ДЛЯ КОНФИГА ПОГОДЫ;
+	4) "sudo pacman -S polybar" - ДЛЯ ПАНЕЛЕК В ОКНЕ I3(ЖИВЫХ ПАНЕЛЕК);
+	5) "sudo pacman -S feh" - УСТАНОВКА ИЗОБРАЖЕНИЙ НА РАБОЧИЙ СТОЛ;
+	6) "sudo pacman -S yad" - ДЛЯ КОНФИГА КАЛЕНДАРЯ.
+
+<<<<<<<<<<<<<<<<<<<НАСТРОЙКА_POLYBAR>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+3. СКАЧИВАНИЕ УЖЕ ГОТОВЫХ КОНФИГОВ И НАСТРОЕК:
+	1) ЗАЙДЕМ В БРАУЗЕР(WIN+D > "КОМАНДА ВЫЗОВА БРАУЗЕРА") 
+	2) ПЕРЕЙДЕМ ПО ССЫЛКЕ "https://drive.google.com/drive/folders/1fbfoKNuiAw_MQ_6PtAMJD7hMToNGMogy?usp=sharing" И СКАЧАЕМ ВСЕ ФАЙЛЫ;
+	3) ОТКРОЕМ WIN+D "pcmanfm" (ПРОВОДНИК, СРАЗУ ПКМ "ПОКАЗАТЬ СКРЫТЫЕ ФАЙЛЫ"), ЗАЙДЕМ В ЗАГРУЗКИ;
+	4) ОТКРОЕМ ТЕРМИНАЛ В ПАПКЕ С АРХИВОМ;
+	4) "unsip archlinux..." - РАЗАРХИВИРУЕТ АРХИВ.
+
+<<<<<<<<ДАЛЕЕ_БУДЕМ_ИСПОЛЬЗОВАТЬ_ФАЙЛЫ_ИЗ_РАЗАРХИВИРОВАНОГО_АРХИВА>>>>
+
+4. СОЗДАДИМ СЛЕДУЮЩИЕ ПАПКИ:
+	1) "sudo mkdir ~/.config/polybar" - ПАПКА ДЛЯ POLYBAR;
+	2) "sudo mkdir ~/.config/polybar/scripts" - ПАПКА ДЛЯ СКРИПТОВ POLYBAR.
+
+5. КОПИРОВАНИЕ СКРИПТОВ:
+	1) КОПИРУЕМ В ПАПКУ "~/.config/polybar/scripts" ПРИ ПОМОЩИ "sudo cp CONFIGNAME ~/.config/polybar/scripts":
+	1) "openweathermap-fullfeatured.sh" - КОНФИГ ПОГОДЫ;
+	2) "updates-pacman-aurhelper.sh" - КОЛИЧЕСТВО ВОЗМОЖНЫХ ОБНОВЛЕНИЙ;
+	3) "popup-calendar.sh" - КАЛЕНДАРЬ.
+
+5. НАСТРОИМ СКРИПТЫ(ЕСЛИ ТРЕБУЕТСЯ) ИЛИ ПРОСТО "sudo chmod +x /ПУТЬ_К_ФАЙЛУ" ДАДИМ ПРАВА НА ЗАПУСК:
+	5.1) ПОМЕНЯЕМ ВНУТРИ СКРИПТА "openweathermap-fullfeatured.sh" ЗНАЧЕНИЯ, НАЙТИ ИХ МОЖНО НА САЙТЕ https://api.openweathermap.org/ ПОСЛЕ РЕГИСТРАЦИИ:
+		5.1.1) KEY="27955613fe675c21e4a444e36d823dc3";
+		5.2.2) CITY ="581049";
+	5.2) ПОМЕНЯЕМ ВНУТРИ СКРИПТА "updates-pacman-aurhelper.sh" ЗНАЧЕНИЕ ЗНАКА "#", НА ЗНАК КОТОРЫЙ НАЙДЁМ НА САЙТЕ fontawesome.com:
+		5.2.1) В ПОИСКОВИКЕ НА САЙТЕ ВВОДИМ "arrows-rotate", НАЖМЁМ НА ПОДХОДЯЩИЙ;
+		5.2.2) КОПИРУЕМ И ВСТАВЛЯЕМ НА МЕСТО "#" В СКРИПТЕ.
+	5.3) ПОСЛЕ ИЗМЕНЕНИЙ НУЖНО ДАТЬ ПРАВА НА ИСПОЛНЕНИЕ СКРИПТАМ "sudo chmod +x file.sh";
+		5.3.1) ПРОВЕРЯЕМ ПРИ ПОМОЩИ "sudo bash ~/.config/polybar/scripts/file.sh".
+
+6. НАСТРОЙКА КОНФИГА POLYBAR, "sudo cp config ~/.config/polubar":
+	1) "sudo nano ~/.config/polybar/config.ini" - ПРИ ЖЕЛАНИИ МОЖНО ОТРЕДАКТИРОВАТЬ;
+	2) "sudo cp /etc/polybar/config.ini ~/.config/polybar/config_back.ini" - ТОТ КОНФИГ КОТОРЫЙ ДОЛЖЕН БЫТЬ ПО УМОЛЧАНИЮ, ОСТАВИМ ЕГО ТУТ НА ВСЯКИЙ СЛУЧАЙ;
+ 	3) https://github.com/polybar/polybar/wiki/Configuration - ОФИЦИАЛЬНАЯ ВИКИ.
+
+7. ТЕПЕРЬ СКОНФИГУРИРУЕМ ФАЙЛ ЗАПУСКА POLYBAR "sudo cp launch.sh ~/.config/polubar":
+	7.1) ДАДИМ ПРАВА ФАЙЛУ "sudo chmod +x ~/.config/polybar/launch.sh";
+	7.2) В ФАЙЛЕ ЛУЧШЕ НИЧЕГО НЕ МЕНЯТЬ.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+8. НАСТРОИМ КОНФИГ I3:
+	8.1) "sudo cp ~/.config/i3/config ~/.config/i3/" - КОПИРУЕМ НА ВСЯКИЙ СЛУЧАЙ КОНФИГ, ЧТО СТОИТ ПО УМОЛЧАНИЮ;
+	8.2) WIN+D "code" - ОТКРОЕМ КОНФИГ В VISUAL STUDIO(/home/user/Downloads/arch.../i3/config), СКОПИРУЕМ ВСЁ, ЧТО ЕСТЬ В КОНФИГЕ;
+	8.3) КОПИРУЕМ ВСЁ ЧТО ЕСТЬ В ФАЙЛЕ CTRL+A И CTRL+SHIFT+C;
+	8.4) ВСТАВИМ В ФАЙЛ "sudo nano ~/.config/i3/config" CTRL+SHIFT+V;
+	8.5) ПОМЕНЯЕМ КОНФИГ ЕСЛИ НУЖНО(ФОН, ЦВЕТА, КОМБИНАЦИИ КЛАВИШ);
+	8.6) WIN+SHIFT+R - ПЕРЕЗАПУСТИТ КОНФИГ I3;
+	8.7) "sudo reboot" - ПЕРЕЗАПУСТИМСЯ И ПРОВЕРИМ НА КОРРЕКТНОСТЬ.
