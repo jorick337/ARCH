@@ -38,19 +38,22 @@
 	WIN+S - ТОЛЬКО ОДНО ОКНО НА ЭКРАНЕ
 	WIN+E - ВЕРНУТЬ ТО ЧТО БЫЛО(ЕСЛИ УДОБНО).
 
-1) "pacman -S ttf-jetbrains-mono" УСТАНОВИТ ШРИФТ;
-
 6. УСТАНОВИМ ПО, КОТОРОЕ БУДЕМ ИСПОЛЬЗОВАТЬ В "НАСТРОЙКЕ I3":
  	1) "yay -S Flameshot" - ПРОГРАММА ДЛЯ СКРИНШОТОВ;
 	2) "sudo pacman -S pavucontrol pulseaudio" - ПЕРВОЕ ЭТО ГРАФИЧЕСКАЯ УТИЛИТА ДЛЯ УПРАВЛЕНИЯ ЗВУКОМ, А ВТОРАЯ ЭТО СЕРВЕР НЕОБХОДИМЫЫЙ ДЛЯ ЗАПУСКА:
-	3) "sudo pacman -S vivaldi" - УСТАНОВИТ БРАУЗЕР ВИВАЛЬДИ;
+	3) УСТАНОВКА БРАУЗЕРА THORIUM:
+		1) "git clone https://aur.archlinux.org/thorium-browser-bin.git" - КЛОНИРУЕМ РЕПОЗИТОРИЙ СО СБОРКОЙ;
+		2) "cd thorium-browser-bin" -> "_pkgver=120.0.6099.235 makepkg" - ЗАЙДЕМ В ПАПКУ И НАЧНЕМ СБОРКУ ПАКЕТА;
+		3) "sudo pacman -U thorium-browser-bin-120.0.6099.235-1-x86_64.pkg.tar.zst" - УСТАНОВКА СОБРАННОГО ПАКЕТА.
 	4) "sudo pacman -S dmenu" - УСТАНОВКА/ОБНОВЛЕНИЕ МЕНЕДЖЕРА ОКОН(СМОТРИ "КОМАНДЫ DMENU", МОЖНО УДОБНО ВЫЗЫВАТЬ ЛЮБЫЕ ПРОГРАММЫ);
 	5) "sudo pacman -S pcmanfm" - УСТАНОВКА ФАЙЛОВОГО МЕНЕДЖЕРА:
-		1) ЗАЙТИ В ПАРАМЕТРЫ "РАСШИРЕННЫЕ" И УКАЗАТЬ "alacritty" КАК ЭМУЛЯТОР ТЕРМИНАЛА.
-	6) "yay -S VLC" - УНИВЕРСАЛЬНЫЙ ПРОИГРЫВАТЕЛЬ, ДОЛГО 		УСТАНАВЛИВАЕТСЯ, НЕТ РУССКОГО ЯЗЫКА;
-	7) "sudo pacman -S gwget" - МЕНЕДЖЕР ЗАКАЧЕК;
-	8) "yay -S code" - VISUAL STUDIO CODE;
-	9) "sudo pacman -S steam" - STEAM;
-	10) "sudo pacman -S libreoffice" - LibreOffice;
-	11) "sudo pacman -S galculator" - КАЛЬКУЛЯТОР;
-	12) "sudo pacman -S unzip" - РАЗАРХИВИРУЕТ АРХИВЫ ТИПА ZIP.
+		1) "ПРАВКА" -> "ПАРАМЕТРЫ" -> "РАСШИРЕННЫЕ" И УКАЗАТЬ "alacritty" КАК ЭМУЛЯТОР ТЕРМИНАЛА.
+	6) "yay -S VLC" - УНИВЕРСАЛЬНЫЙ ПРОИГРЫВАТЕЛЬ, ДОЛГО		УСТАНАВЛИВАЕТСЯ, НЕТ РУССКОГО ЯЗЫКА;
+	7) "yay -S code" - VISUAL STUDIO CODE;
+	8) "sudo pacman -S steam" - STEAM;
+	9) "sudo pacman -S galculator" - КАЛЬКУЛЯТОР;
+	10) "sudo pacman -S unzip" - РАЗАРХИВИРУЕТ АРХИВЫ ТИПА ZIP;
+	11) "sudo pacman -Syu" - ОБНОВЛЕНИЕ ВСЕХ ПАКЕТОВ(ПРИЛОЖЕНИЯ МОГУТ НЕ ЗАПУСТИТЬСЯ ИЗ-ЗА НЕОБНОВЛЕННЫХ ПАКЕТОВ).
+
+15. ПЕРЕХОДИМ К 4 ЭТАПУ:
+	1) "sudo reboot" - ПЕРЕЗАГРУЖАЕМСЯ.
