@@ -9,18 +9,21 @@
 	3) "sudo reboot" - ПЕРЕЗАПУСТИМСЯ И СРАЗУ ПОСЛЕ ВВОДА ЛОГИНА И ПАРОЛЯ СИСТЕМА ВОЙДЕТ В I3.
 
 2. УСТАНОВКА НУЖНОГО ПО:
-	1) "sudo pacman -S ttf-font-awesome" - ДОБАВИТ ВОЗМОЖНОСТЬ ВИДЕТЬ ИКОНКИ С САЙТА https://fontawesome.com/cheatsheet?from=io;
-	2) "sudo pacman -S pacman-contrib" - ДЛЯ КОНФИГА ПОКАЗА КОЛИЧЕСТВА ВОЗМОЖНЫХ ОБНОВЛЕНИЙ ПАКЕТОВ;
-	3) "sudo pacman -S jq" - ЧИТАЕТ МНОГОМЕРНЫЕ МАССИВЫ JSON, НУЖЕН ДЛЯ КОНФИГА ПОГОДЫ;
-	4) "sudo pacman -S polybar" - ДЛЯ ПАНЕЛЕК В ОКНЕ I3(ЖИВЫХ ПАНЕЛЕК);
-	5) "sudo pacman -S feh" - ПРОСМОТР ИЗОБРАЖЕНИЙ  И УСТАНОВКА ИХ НА РАБОЧИЙ СТОЛ;
-	6) "sudo pacman -S yad" - КАЛЕНДАРЬ ДЛЯ КОНФИГА КАЛЕНДАРЯ.
+	1) "sudo pacman -Syu" - ОБНОВИМ ВСЕ ПАКЕТЫ;
+	2) "sudo pacman -S ttf-font-awesome" - ДОБАВИТ ВОЗМОЖНОСТЬ ВИДЕТЬ ИКОНКИ С САЙТА https://fontawesome.com/cheatsheet?from=io;
+	3) "sudo pacman -S pacman-contrib" - ДЛЯ КОНФИГА ПОКАЗА КОЛИЧЕСТВА ВОЗМОЖНЫХ ОБНОВЛЕНИЙ ПАКЕТОВ;
+	4) "sudo pacman -S jq" - ЧИТАЕТ МНОГОМЕРНЫЕ МАССИВЫ JSON, НУЖЕН ДЛЯ КОНФИГА ПОГОДЫ;
+	5) "sudo pacman -S polybar" - ДЛЯ ПАНЕЛЕК В ОКНЕ I3(ЖИВЫХ ПАНЕЛЕК);
+	6) "sudo pacman -S feh" - ПРОСМОТР ИЗОБРАЖЕНИЙ  И УСТАНОВКА ИХ НА РАБОЧИЙ СТОЛ;
+	7) "sudo pacman -S yad" - КАЛЕНДАРЬ ДЛЯ КОНФИГА КАЛЕНДАРЯ;
+	8) ЕСЛИ ВОЗНИКЛА ОШИБКА "НЕ УДАЛОСЬ ЗАБЛОКИРОВАТЬ БАЗУ ДАННЫХ":
+		1) "sudo rm /var/lib/pacman/db.lck" - УДАЛИМ ФАЙЛ.
 
 3. СКАЧИВАНИЕ УЖЕ ГОТОВЫХ КОНФИГОВ И НАСТРОЕК:
 	1) ЗАЙДЕМ В БРАУЗЕР(WIN+D > "thorium-browser") 
-	2) ПЕРЕЙДЕМ ПО ССЫЛКЕ "https://drive.google.com/drive/folders/1fbfoKNuiAw_MQ_6PtAMJD7hMToNGMogy?usp=sharing" И СКАЧАЕМ ВСЕ ФАЙЛЫ;
-	3) ОТКРОЕМ WIN+D "pcmanfm" (ПРОВОДНИК, СРАЗУ ПКМ "ПОКАЗАТЬ СКРЫТЫЕ ФАЙЛЫ"), ЗАЙДЕМ В ЗАГРУЗКИ;
-	4) "Инструменты" -> "Открыть текущую папку в терминале" или "F4"- ОТКРОЕМ ТЕРМИНАЛ В ПАПКЕ С АРХИВОМ;
+	2) ПЕРЕЙДЕМ ПО ССЫЛКЕ "https://drive.google.com/drive/folders/1fbfoKNuiAw_MQ_6PtAMJD7hMToNGMogy?usp=sharing" И СКАЧАЕМ ФАЙЛЫ "polybar" И "i3";
+	3) ОТКРОЕМ ТОЛЬКО ЧТО СКАЧАННЫЙ АРХИВ В ФАЙЛОВОМ МЕНЕДЖЕРЕ;
+	4) "Инструменты" -> "Открыть текущую папку в терминале" ИЛИ "F4"- ОТКРОЕМ ТЕРМИНАЛ В ПАПКЕ С АРХИВОМ;
 	5) "unsip archlinux..." - РАЗАРХИВИРУЕТ АРХИВ.
 
 <<<<<<<<<<<<<<<<<<<НАСТРОЙКА_POLYBAR>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -30,7 +33,7 @@
 	2) "sudo mkdir ~/.config/polybar/scripts" - ПАПКА ДЛЯ СКРИПТОВ POLYBAR.
 
 5. КОПИРОВАНИЕ СКРИПТОВ:
-	1) КОПИРУЕМ В ПАПКУ "~/.config/polybar/scripts" ПРИ ПОМОЩИ "sudo cp CONFIGNAME ~/.config/polybar/scripts":
+	1) КОПИРУЕМ В ПАПКУ "~/.config/polybar/scripts" ПРИ ПОМОЩИ "sudo cp polybar/scripts/CONFIGNAME ~/.config/polybar/scripts", ЛЕЖАЩИХ В ПАПКЕ "/polybar" РАЗАРХИВИРОВАННОГО АРХИВА:
 	1) "openweathermap-fullfeatured.sh" - КОНФИГ ПОГОДЫ;
 	2) "updates-pacman-aurhelper.sh" - КОЛИЧЕСТВО ВОЗМОЖНЫХ ОБНОВЛЕНИЙ;
 	3) "popup-calendar.sh" - КАЛЕНДАРЬ.
@@ -43,23 +46,32 @@
 		1) ПРОВЕРИТЬ СКРИПТЫ НА РАБОТОСПОСОБНОСТЬ МОЖНО ПРИ ПОМОЩИ: "sudo bash ~/.config/polybar/scripts/file.sh".
 
 7. НАСТРОЙКА КОНФИГА POLYBAR:
-	1) "sudo cp config ~/.config/polybar" - КОПИРУЕМ УЖЕ ГОТОВЫЙ КОНФИГ В ПАПКУ;
+	1) "sudo cp polybar/config ~/.config/polybar" - КОПИРУЕМ УЖЕ ГОТОВЫЙ КОНФИГ В ПАПКУ;
 	1) "sudo nano ~/.config/polybar/config.ini" - ПРИ ЖЕЛАНИИ МОЖНО ОТРЕДАКТИРОВАТЬ(ЕСТЬ ОПИСАНИЕ В ФАЙЛЕ НА РУССКОМ);
 	2) "sudo cp /etc/polybar/config.ini ~/.config/polybar/config_back.ini" - ТОТ КОНФИГ КОТОРЫЙ ДОЛЖЕН БЫТЬ ПО УМОЛЧАНИЮ, ОСТАВИМ ЕГО ТУТ НА ВСЯКИЙ СЛУЧАЙ;
  	3) https://github.com/polybar/polybar/wiki/Configuration - ОФИЦИАЛЬНАЯ ВИКИ.
 
 8. КОНФИГУРАЦИЯ ФАЙЛА ЗАПУСКА ДЛЯ POLYBAR:
-	1) "sudo cp launch.sh ~/.config/polubar" - КОПИРУЕМ ГОТОВЫЙ ФАЙЛ ЗАПУСКА;
+	1) "sudo cp polybar/launch.sh ~/.config/polybar" - КОПИРУЕМ ГОТОВЫЙ ФАЙЛ ЗАПУСКА;
 	2) ДАДИМ ПРАВА ФАЙЛУ "sudo chmod +x ~/.config/polybar/launch.sh";
-	3) В ФАЙЛЕ НИЧЕГО НЕ МЕНЯТЬ.
+	3) В ФАЙЛЕ НИЧЕГО НЕ МЕНЯТЬ;
+	4) "sudo bash ~/.config/polybar/launch.sh" - ПРОВЕРИМ НА РАБОТОСПОСОБНОСТЬ.
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<НАСТРОЙКА_КОНФИГА_I3>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 9. НАСТРОИМ КОНФИГ I3:
-	1) "sudo cp ~/.config/i3/config ~/.config/i3/" - КОПИРУЕМ НА ВСЯКИЙ СЛУЧАЙ КОНФИГ, ЧТО СТОИТ ПО УМОЛЧАНИЮ;
-	2) WIN+D "code" - ОТКРОЕМ КОНФИГ В VISUAL STUDIO(/home/user/Downloads/arch.../i3/config), СКОПИРУЕМ ВСЁ, ЧТО ЕСТЬ В КОНФИГЕ;
-	3) КОПИРУЕМ ВСЁ ЧТО ЕСТЬ В ФАЙЛЕ CTRL+A И CTRL+SHIFT+C;
-	4) ВСТАВИМ В ФАЙЛ "sudo nano ~/.config/i3/config" CTRL+SHIFT+V;
-	5) ПОМЕНЯЕМ КОНФИГ ЕСЛИ НУЖНО(ФОН, ЦВЕТА, КОМБИНАЦИИ КЛАВИШ);
-	6) WIN+SHIFT+R - ПЕРЕЗАПУСТИТ КОНФИГ I3;
-	7) "sudo reboot" - ПЕРЕЗАПУСТИМСЯ И ПРОВЕРИМ НА КОРРЕКТНОСТЬ.
+	1) "sudo cp /etc/i3/config ~/.config/i3/config_back.ini" - КОПИРУЕМ НА ВСЯКИЙ СЛУЧАЙ КОНФИГ, ЧТО СТОИТ ПО УМОЛЧАНИЮ;
+	2) ОТКРОЕМ ГОТОВЫЙ И НАЧАЛЬНЫЙ КОНФИГИ I3:
+		1) WIN+D -> "code" - ОТКРОЕМ VISUAL STUDIO;
+		2) CTRL+O -> "Загрузки/i3/config" - ОТКРОЕМ ГОТОВЫЙ КОНФИГ;
+		3) "sudo nano ~/.config/i3/config" - ОТКРОЕМ НАЧАЛЬНЫЙ КОНФИГ.
+	3) CTRL+K - УДАЛИМ ВСЕ ИЗ НАЧАЛЬНОГО КОНФИГА;
+	4) CTRL+A И CTRL+C - КОПИРУЕМ ВСЁ ЧТО ЕСТЬ В ГОТОВОМ КОНФИГЕ;
+	5) CTRL+SHIFT+V -  ВСТАВИМ В НАЧАЛЬНЫЙ КОНФИГ;
+	6) ПОМЕНЯЕМ КОНФИГ ЕСЛИ НУЖНО(ФОН, ЦВЕТА, КОМБИНАЦИИ КЛАВИШ);
+	7) WIN+SHIFT+R - ПЕРЕЗАПУСТИТ КОНФИГ I3;
+	8) "sudo reboot" - ПЕРЕЗАПУСТИМСЯ И ПРОВЕРИМ НА КОРРЕКТНОСТЬ.
+
+10. ПЕРЕХОДИМ К 5 ЭТАПУ:
+	1) "timedatectl set-ntp true" - ЕСЛИ ВРЕМЯ СБИЛОСЬ;
+	2) "sudo reboot" - ПЕРЕЗАПУСТИМ.
