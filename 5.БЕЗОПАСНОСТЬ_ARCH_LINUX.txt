@@ -82,19 +82,19 @@
 	"
 	auth   optional pam_faildelay.so delay=4000000
 	";
-	2) "sudo nano /etc/security/faillock.conf" - ОТКРОЕМ ФАЙЛ С НАСТРОЙКАМИ БЛОКИРОВОК(СОХРАНЯЕМ БЛОКИРОВКИ, ВРЕМЯ ДЛЯ ПОПЫТОК ПОСЛЕ КОТОРЫХ БУДЕТ БЛОКИРОВКА, КОЛИЧЕСТВО ПОПЫТОК, ПРОДОЛЖИТЕЛЬНОСТЬ БЛОКИРОВКИ):
+	2) "sudo nano /etc/security/faillock.conf" - ОТКРОЕМ ФАЙЛ С НАСТРОЙКАМИ БЛОКИРОВОК(СОХРАНЯЕМ БЛОКИРОВКИ, КОЛИЧЕСТВО ПОПЫТОК, ВРЕМЯ ДЛЯ ПОПЫТОК ПОСЛЕ КОТОРЫХ БУДЕТ БЛОКИРОВКА, ПРОДОЛЖИТЕЛЬНОСТЬ БЛОКИРОВКИ):
 	"
 	dir = /var/lib/faillock
-	fail_interval = 900
 	deny = 3
+	fail_interval = 900
 	unlock_time = 600
 	".
 
 8. ЗАЩИТА ОТ FORK-БОМБ И ДРУГИХ DOS-АТАК:
-	1) "ps --no-headers -Leo user | sort | uniq --count" - ПОСМОТРИМ КОЛИЧЕСТВО ЗАПУЩЕННЫХ ПРОЦЕССОВ;
-	2)"sudo nano /etc/security/limits.conf" - ОТКРОЕМ ФАЙЛ И ДОБАВИМ ПРЕДЕЛ ПРОЦЕССОВ:
+	1) "ps --no-headers -Leo user | sort | uniq --count" - ПОСМОТРИМ КОЛИЧЕСТВО ЗАПУЩЕННЫХ ПОТОКОВ У ПОЛЬЗОВАТЕЛЕЙ;
+	2)"sudo nano /etc/security/limits.conf" - ОТКРОЕМ ФАЙЛ И ДОБАВИМ ПРЕДЕЛ ПОТОКОВ(ИСХОДЯ ИЗ КОЛИЧЕСТВА ПОТОКОВ):
 	"
-	* soft nproc 150
+	* soft nproc 100
 	* hard nproc 200
 	".
 
@@ -103,7 +103,7 @@
 	2) BOOT - ФАЙЛ ЯДРА VMLINUZ И ОБРАЗ INITRAMFS;
 	3) IPTABLES - НАСТРОЙКИ IPTABLES.
 
-10. ПАРАМЕТРЫ ВХОДА ДЛЯ PAM():
+10. ПАРАМЕТРЫ УПРАВЛЕНИЯ ВХОДОМ В СИСТЕМУ:
 	1) "sudo nano /etc/security/access.conf" - ОТКРОЕМ ФАЙЛ И ДОБАВИМ В САМЫЙ НИЗ:
 	"
 	+:USER:LOCAL
@@ -111,5 +111,8 @@
 	+:(adm):LOCAL
 	-:ALL:ALL
 	".
+
+11. ПЕРЕХОДИМ К 6 ЭТАПУ:
+	1) "sudo reboot" - ПЕРЕЗАПУСТИМ.
 	
 
