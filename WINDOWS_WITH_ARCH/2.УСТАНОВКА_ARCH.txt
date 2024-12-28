@@ -10,10 +10,6 @@
 	1) КОМАНДА "ip link" ПОКАЖЕТ ВКЛЮЧЕН И ОБНАРУЖЕН ЛИ СЕТЕВОЙ ИНТЕРФЕЙС;
 	2) ПРОВЕРИТЬ СОЕДИНЕНИЕ МОЖНО С ПОМОЩЬЮ "ping archlinux.org".
 
-3. СИНХРОНИЗАЦИЯ СИСТЕМНЫХ ЧАСОВ:
-	1) КОМАНДА "timedatectl" ПОКАЖЕТ ВРЕМЯ;
-	2) КОМАНДА "timedatectl set-ntp true" АКТИВИРУЕТ NTP СЕРВИС ВРЕМЕНИ(АКТУАЛЬНОЕ ВРЕМЯ).
-
 4. РАЗМЕТКА ДИСКОВ:
 	1) "cfdisk" - ВХОД В УТИЛИТУ УПРАВЛЕНИЯ ДИСКАМИ;
 	2) СОЗДАТЬ ЧЕТЫРЕ РАЗДЕЛА С НАСТРОЙКАМИ:
@@ -44,11 +40,7 @@
 		2) "mkdir /mnt/efi" И "mkdir /mnt/home" - СОЗДАДУТ ПАПКИ;
 		3) "cd /mnt" И "ls" - ПРОВЕРИМ НАЗВАНИЕ ПАПОК, "cd" ВЕРНЁМСЯ НАЗАД;
 		4) "mount /dev/sdaА /mnt/home" МОНТИРУЕМ ДОМАШНИЙ РАЗДЕЛ;
-		5) "mount /dev/sdaА /mnt/efi" МОНТИРУЕМ EFI РАЗДЕЛ.
-
-6. МЕНЯЕМ MIRRORLIST(ЗЕРКАЛА, КОТОРЫЕ ВЛИЯЮТ НА СКОРОСТЬ СКАЧИВАНИЯ И Т.Д.):
-	1) "nano /etc/pacman.d/mirrorlist" - ФАЙЛ С ЗЕРКАЛАМИ;
-	2) ЗЕРКАЛА МОЖНО НАЙТИ НА САЙТЕ "https://archlinux.org/mirrorlist/" ВЫБРАВ СТРАНУ И HTTPS И НАЖАВ НА "Generate List".
+		5) "mount /dev/sdaА /mnt/efi" МОНТИРУЕМ EFI РАЗДЕл;
 
 7. УСТАНОВКА ОСНОВНЫХ ПАКЕТОВ:
 	1) КОМАНДА "pacstrap -K /mnt base linux-zen linux-firmware" УСТАНОВИТ ПАКЕТ BASE И ЯДРО LINUX-ZEN(СТАНДАРТНОЕ - LINUX) И ПРОШИВКИ ЧАСТО ВСТРЕЧАЮЩИХСЯ УСТРОЙСТВ;
@@ -58,9 +50,7 @@
 <<<<<<<<<<<<<ПОМЕНЯЕМ КОРЕНЬ ЛИНУКСА КОМАНДОЙ "arch-chroot /mnt">>>>>>>>>>>>>>
 
 8. ВРЕМЯ:
-	1) "ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime" - ЗАДАЕТ ЧАСОВОЙ ПОЯС;
-	2) "ls /etc/localtime" - ПРОВЕРЯЕМ ДОБАВИЛОСЬ ЛИ;
-	3) "hwclock --systohc" НАСТРАИВАЕМ АППАРАТНЫЕ ЧАСЫ.
+	1) "timedatectl set-timezone Europe/Moscow" - ЗАДАЕТ ЧАСОВОЙ ПОЯС;
 
 9. ЛОКАЛИЗАЦИЯ:
 	1) "pacman -S nano" И "EDITOR=nano" - УСТАНОВИТ NANO И СДЕЛАЕТ РЕДАКТОРОМ ПО УМОЛЧАНИЮ;
@@ -88,9 +78,8 @@
 	2) "useradd -m user" ДОБАВЛЯЕМ ПОЛЬЗОВАТЕЛЯ;
 	3) "passwd user"  ЗАДАДИМ ЕМУ ПАРОЛЬ;
 	4) "usermod -aG wheel,audio,video,optical,storage user" ДАДИМ ЕМУ ДОСТУП КО ВСЕМУ ИЗ СПИСКА;
-	5) "userdbctl groups-of-user user" ДОБАВИМ В ГРУППУ;
-	6) "pacman -S sudo" СКАЧАЕМ КОМАНДУ ДЛЯ ПРАВ СУПЕРПОЛЬЗОВАТЕЛЯ;
-	7) РАССКОМЕНТИРУЕМ "%wheel ALL=(ALL) ALL" В "visudo".
+	5) "pacman -S sudo" СКАЧАЕМ КОМАНДУ ДЛЯ ПРАВ СУПЕРПОЛЬЗОВАТЕЛЯ;
+	6) РАССКОМЕНТИРУЕМ "%wheel ALL=(ALL) ALL" В "visudo".
 
 13. НАСТРОЙКА GRUB:
 	1) "pacman -S grub efibootmgr dosfstools os-prober mtools" - УСТАНАВЛИВАЕМ ЗАГРУЗЧИК GRUB И УТИЛИТЫ ДЛЯ НЕГО;
